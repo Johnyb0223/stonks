@@ -29,3 +29,4 @@ def check_moving_average_crossover(ticker, min_price=150):
         if data['5_MA'].iloc[-2] < data['20_MA'].iloc[-2] and data['5_MA'].iloc[-1] > data['20_MA'].iloc[-1]:
             return True
     return False
+

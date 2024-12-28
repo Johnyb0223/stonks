@@ -1,5 +1,5 @@
 #THIS WORKS GREAT FOR PULLING. IT WOULD BE NICE TO ADD IN THE NASDAQ
-
+# ADD IN THE SLOPE CHECKER, VOLUME CHECKER, REDUNDANT CROSS CHECKER
 import pandas as pd
 from stock_analysis import check_moving_average_crossover
 
@@ -30,3 +30,6 @@ for stock in sp500_tickers:
 # Print the list of stocks that meet the criteria
 print("Stocks above $150 with a 5-day MA crossing above the 20-day MA:")
 print(stocks_above_150_with_crossover)
+
+top_3_stocks = stocks_above_150_with_crossover[:3]
+print(top_3_stocks)
