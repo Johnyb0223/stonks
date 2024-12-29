@@ -1,5 +1,3 @@
-# THIS FUNCTION WORKS GREAT TO CALCULATE THE 5 AND 20 DMA. IT WOULD BE NICE TO CHECK SLOPE TO MAKE SURE ITS POSITIVE
-
 import yfinance as yf
 from datetime import datetime, timedelta
 
@@ -23,10 +21,13 @@ def check_moving_average_crossover(ticker, min_price=150):
     # Get the latest close price as a scalar
     latest_close = data['Close'].iloc[-1].item()
     
-    # Check if the stock price is above the threshold and if the crossover occurred
+    # Check if the stock price is above the threshold
     if latest_close > min_price:
         # Check for crossover condition (5_MA crosses above 20_MA)
         if data['5_MA'].iloc[-2] < data['20_MA'].iloc[-2] and data['5_MA'].iloc[-1] > data['20_MA'].iloc[-1]:
-            return True
+            # Check if the slope of the 5-day moving average is positive
+            if data['5_MA'].iloc[-1] > data['5_MA'].iloc[-3]:  # Compare the current 5_MA with its value two days ago
+                return True
+    
     return False
 
