@@ -12,7 +12,7 @@ def calculate_rsi(data, window=14):
     return rsi
 
 # Function to download stock data and check moving average crossover with RSI condition
-def check_moving_average_crossover(ticker, min_price=150, rsi_window=14, rsi_threshold=40):
+def check_moving_average_crossover(ticker, min_price=150, rsi_window=14, rsi_threshold=50):
     # Download historical stock data (adjust start date as needed)
     end_date = datetime.today().date() # Today's date
     start_date = end_date - timedelta(days=50)  # Get last 60 days of data
