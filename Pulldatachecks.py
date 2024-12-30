@@ -5,10 +5,6 @@ from stock_analysis import check_moving_average_crossover
 
 def stockpicker():
 
-
-
-
-
     # URL for the S&P 500 Companies List on Wikipedia
     url = 'https://en.wikipedia.org/wiki/List_of_S%26P_500_companies'
 
@@ -21,8 +17,6 @@ def stockpicker():
     # Filter out any rows that are NaN or invalid
     sp500_tickers = [ticker for ticker in sp500_tickers if isinstance(ticker, str) and len(ticker) <= 5]
 
-
-
     # List of stocks that meet the criteria
     stocks_above_150_with_crossover = []
 
@@ -30,11 +24,5 @@ def stockpicker():
     for stock in sp500_tickers:
         if check_moving_average_crossover(stock):
             stocks_above_150_with_crossover.append(stock)
-
-    # Print the list of stocks that meet the criteria
-    #print("Stocks above $150 with a 5-day MA crossing above the 20-day MA:")
-    print(stocks_above_150_with_crossover)
-
     
-    #print(top_3_stocks)
-stockpicker()
+    return stocks_above_150_with_crossover
