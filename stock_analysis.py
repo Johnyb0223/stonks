@@ -32,8 +32,8 @@ def get_pe_ratio(ticker):
 # Function to download stock data and check moving average crossover with RSI and CCI conditions
 def check_moving_average_crossover(ticker, min_price=150, rsi_window=14, rsi_threshold=50):
     # Download historical stock data
-    end_date = datetime.today().date() - timedelta(days = 25) # Today's date
-    start_date = end_date - timedelta(days=86)  # Get last 60 days of data
+    end_date = datetime.today().date()  # Today's date
+    start_date = end_date - timedelta(days=60)  # Get last 60 days of data
     
     # Pause to avoid hitting API rate limits
     time.sleep(.1)  # Sleep for 2 seconds between requests (adjust as needed)
