@@ -5,3 +5,5 @@ aiohttp
 matplotlib
 requests
 python-dotenv
+nextcord
+openai

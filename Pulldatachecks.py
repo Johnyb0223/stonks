@@ -27,4 +27,3 @@ def stockpicker():
     
     return stocks_above_150_with_crossover
 
-print(stockpicker())

@@ -70,7 +70,7 @@ def check_moving_average_crossover(ticker, min_price=50, rsi_window=14, rsi_thre
                 if data['13_MA'].iloc[-1] > data['13_MA'].iloc[-3]:
                     if latest_rsi < rsi_threshold:
                         if latest_cci > 0:
-                            if pe_ratio < 25:
+                            # if pe_ratio < 25:
                                 return True
     
     return False
