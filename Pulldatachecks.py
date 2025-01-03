@@ -24,6 +24,11 @@ def stockpicker():
     for stock in sp500_tickers:
         if check_moving_average_crossover(stock):
             stocks_above_150_with_crossover.append(stock)
-    
-    return stocks_above_150_with_crossover
 
+    # Print the list of stocks that meet the criteria
+    #print("Stocks above $150 with a 5-day MA crossing above the 20-day MA:")
+    print(stocks_above_150_with_crossover)
+
+    
+    #print(top_3_stocks)
+stockpicker()
