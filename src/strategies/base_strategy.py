@@ -33,6 +33,7 @@ class BaseStrategy:
 
         data['5_MA'] = data['Close'].rolling(window=5).mean()
         data['20_MA'] = data['Close'].rolling(window=20).mean()
+        data['13_MA'] = data['Close'].rolling(window=13).mean()
         data['RSI'] = self.calculate_rsi(data, window=rsi_window)
         data['CCI'] = self.calculate_cci(data, window=20)
         
@@ -41,13 +42,15 @@ class BaseStrategy:
         latest_cci = data['CCI'].iloc[-1].item()
         pe_ratio = stock_info.get('trailingPE', None)
 
+        # Check conditions (crossover, RSI, CCI, P/E ratio)
         if latest_close > min_price:
             if data['5_MA'].iloc[-2] < data['20_MA'].iloc[-2] and data['5_MA'].iloc[-1] > data['20_MA'].iloc[-1]:
                 if data['5_MA'].iloc[-1] > data['5_MA'].iloc[-3]:
-                    if latest_rsi < rsi_threshold:
-                        if latest_cci > 0:
-                            if pe_ratio and 18 < pe_ratio < 25:
-                                return True
+                    if data['13_MA'].iloc[-1] > data['13_MA'].iloc[-3]:
+                        if latest_rsi < rsi_threshold:
+                            if latest_cci > 0:
+                                if pe_ratio and 18 < pe_ratio < 25:
+                                    return True
 
         return False
 
