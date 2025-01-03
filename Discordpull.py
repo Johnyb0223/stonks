@@ -1,5 +1,20 @@
 import nextcord
 from Pulldatachecks import stockpicker
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Retrieve the token from the environment variable
+token = os.getenv("DISCORD_TOKEN")
+
+# Check if the token is not None and raise an error if it is missing
+if not token:
+    raise ValueError("No Discord bot token found in environment variables")
+
+# Use the token in your Discord bot code
+print(f"Discord Token: {token}")  # Example usage, replace with your actual bot code
 
 # Initialize the nextcord client
 client = nextcord.Client()
@@ -29,6 +44,6 @@ async def on_ready():
         print("Stock pick has already been sent. Skipping logic.")
 
 # Run the bot using your token
-client.run('REDACTED')  # Replace with your bot's token
+client.run(token)  # Pass the actual token retrieved from the environment variable
 
-client.close
+client.close()
