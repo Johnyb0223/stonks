@@ -26,3 +26,5 @@ def stockpicker():
             stocks_above_150_with_crossover.append(stock)
     
     return stocks_above_150_with_crossover
+
+print(stockpicker())
