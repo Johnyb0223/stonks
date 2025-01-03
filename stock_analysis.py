@@ -32,7 +32,7 @@ def get_pe_ratio(ticker):
 # Function to download stock data and check moving average crossover with RSI and CCI conditions
 def check_moving_average_crossover(ticker, min_price=50, rsi_window=14, rsi_threshold=50):
     # Download historical stock data
-    end_date = datetime.today().date()  # Today's date
+    end_date = datetime.today().date()   # Today's date
     start_date = end_date - timedelta(days=60)  # Get last 60 days of data
     
     # Pause to avoid hitting API rate limits
@@ -50,6 +50,7 @@ def check_moving_average_crossover(ticker, min_price=50, rsi_window=14, rsi_thre
 
     # Calculate moving averages, RSI, and CCI
     data['5_MA'] = data['Close'].rolling(window=5).mean()
+    data['13_MA'] = data['Close'].rolling(window=13).mean()
     data['20_MA'] = data['Close'].rolling(window=20).mean()
     data['RSI'] = calculate_rsi(data, window=rsi_window)
     data['CCI'] = calculate_cci(data, window=20)
@@ -66,10 +67,10 @@ def check_moving_average_crossover(ticker, min_price=50, rsi_window=14, rsi_thre
     if latest_close > min_price:
         if data['5_MA'].iloc[-2] < data['20_MA'].iloc[-2] and data['5_MA'].iloc[-1] > data['20_MA'].iloc[-1]:
             if data['5_MA'].iloc[-1] > data['5_MA'].iloc[-3]:
-                if latest_rsi < rsi_threshold:
-                    if latest_cci > 0:
-                        if pe_ratio < 25:
-                            if pe_ratio > 18:
+                if data['13_MA'].iloc[-1] > data['13_MA'].iloc[-3]:
+                    if latest_rsi < rsi_threshold:
+                        if latest_cci > 0:
+                            if pe_ratio < 25:
                                 return True
     
     return False
