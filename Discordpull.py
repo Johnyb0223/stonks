@@ -34,8 +34,9 @@ async def on_ready():
         # Pick a stock
         stock = stockpicker()  # Call the stockpicker function
         
+        channelid = os.getenv("CHANNELID")
         # Send the stock pick to a channel (replace CHANNEL_ID with the actual channel ID)
-        channel = client.get_channel(1324776055487336461)  # Replace with your channel ID
+        channel = client.get_channel(channelid)  # Replace with your channel ID
         await channel.send(f"Today's stock pick is: {stock}")
 
         # Set flag to True to prevent re-sending stock pick
