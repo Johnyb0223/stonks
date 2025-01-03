@@ -31,4 +31,3 @@ def stockpicker():
 
     
     #print(top_3_stocks)
-stockpicker()
